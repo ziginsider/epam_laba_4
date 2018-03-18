@@ -123,6 +123,31 @@ public class MyArrayList<T> implements List<T> {
         return size == 0;
     }
 
+    @NonNull
+    @Override
+    public Iterator<T> iterator() {
+        return new MyIterator<>(elements);
+    }
+
+    private class MyIterator<T> implements Iterator<T> {
+        private int index = 0;
+        private T[] elements;
+
+        public MyIterator(T[] elements) {
+            this.elements = elements;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return index < elements.length;
+        }
+
+        @Override
+        public T next() {
+            return elements[index++];
+        }
+    }
+
     /*
     *
     *
@@ -187,12 +212,6 @@ public class MyArrayList<T> implements List<T> {
     @Override
     public boolean contains(Object o) {
         return false;
-    }
-
-    @NonNull
-    @Override
-    public Iterator<T> iterator() {
-        return null;
     }
 
     @NonNull
