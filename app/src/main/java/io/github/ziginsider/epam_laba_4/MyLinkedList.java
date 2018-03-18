@@ -1,7 +1,6 @@
 package io.github.ziginsider.epam_laba_4;
 
 import android.support.annotation.NonNull;
-
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -12,13 +11,13 @@ import java.util.ListIterator;
  */
 
 public class MyLinkedList<T> implements List<T> {
-    int size;
-    Node<T> header;
+    private int size;
+    private Node<T> header;
 
     public MyLinkedList() {
         size = 0;
         //header.element = null;
-        header.nextNode = header.prevNode = header;
+        this.header.nextNode = this.header.prevNode = this.header;
     }
 
     private static class Node<T> {
@@ -33,20 +32,28 @@ public class MyLinkedList<T> implements List<T> {
         }
     }
 
-
-    /*
-    * Below not implemented
-    */
-
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
+
+    @Override
+    public boolean add(T element) {
+        Node<T> newNode = new Node<>(element, header, header.prevNode);
+        newNode.prevNode.nextNode = newNode;
+        newNode.nextNode.prevNode = newNode;
+        size++;
+        return true;
+    }
+
+    /*
+    * Below not implemented
+    */
 
     @Override
     public boolean contains(Object o) {
@@ -69,11 +76,6 @@ public class MyLinkedList<T> implements List<T> {
     @Override
     public <T1> T1[] toArray(@NonNull T1[] t1s) {
         return null;
-    }
-
-    @Override
-    public boolean add(T t) {
-        return false;
     }
 
     @Override
