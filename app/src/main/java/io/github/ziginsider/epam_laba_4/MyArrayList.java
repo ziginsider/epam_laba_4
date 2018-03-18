@@ -44,7 +44,7 @@ public class MyArrayList<T> implements List<T> {
     private void ensureCapacity(int demandCapacity) {
         int oldCapacity = elements.length;
         if (demandCapacity > oldCapacity) {
-            int newCapacity = oldCapacity + (oldCapacity >> 1);
+            int newCapacity = oldCapacity + (oldCapacity >> 1) + 1;
             T[] newElements = (T[]) new Object[newCapacity];
             System.arraycopy(elements, 0, newElements, 0, size);
             elements = newElements;
