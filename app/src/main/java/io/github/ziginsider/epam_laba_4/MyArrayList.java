@@ -139,7 +139,7 @@ public class MyArrayList<T> implements List<T> {
 
         @Override
         public boolean hasNext() {
-            return index < elements.length;
+            return index != size;
         }
 
         @Override
@@ -149,11 +149,7 @@ public class MyArrayList<T> implements List<T> {
     }
 
     /*
-    *
-    *
     * Below not implemented
-    *
-    *
     */
 
     @Override

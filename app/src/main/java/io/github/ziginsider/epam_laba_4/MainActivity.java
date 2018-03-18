@@ -64,5 +64,10 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "check: get string element with index "
                     + i + " = " + myStringArray.get(i));
         }
+
+        Log.d(TAG, "check: Iterator");
+        for(String element : myStringArray) {
+            Log.d(TAG, "check: iterator string element = " + element);
+        }
     }
 }
