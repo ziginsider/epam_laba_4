@@ -34,11 +34,11 @@ public class MyArrayList<T> implements List<T> {
         try {
             ensureCapacity(size + 1);
             elements[size++] = element;
-            return  true;
+            return true;
         } catch (ClassCastException e) {
             e.printStackTrace();
         }
-        return  false;
+        return false;
     }
 
     @Override
@@ -95,6 +95,7 @@ public class MyArrayList<T> implements List<T> {
         } catch (ClassCastException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     @Override
@@ -105,12 +106,27 @@ public class MyArrayList<T> implements List<T> {
             System.arraycopy(elements, index + 1, elements, index, size - index - 1);
         }
         elements[--size] = null;
-        return  oldElement;
+        return oldElement;
     }
 
     @Override
-    public boolean remove(Object o) {
+    public boolean remove(Object object) {
+        if (object == null) {
+            throw new NullPointerException("Removable object is null");
+        } else {
+            for (int i = 0; i < size; i++) {
+                if (object.equals(elements[i])) {
+                    remove(i);
+                    return true;
+                }
+            }
+        }
         return false;
+    }
+
+    @Override
+    public void clear() {
+
     }
 
     /*
@@ -144,11 +160,6 @@ public class MyArrayList<T> implements List<T> {
     @Override
     public boolean retainAll(@NonNull Collection<?> collection) {
         return false;
-    }
-
-    @Override
-    public void clear() {
-
     }
 
     @Override
