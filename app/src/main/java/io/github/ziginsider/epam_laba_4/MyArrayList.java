@@ -31,27 +31,18 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public boolean add(T element) {
-        try {
-            ensureCapacity(size + 1);
-            elements[size++] = element;
-            return true;
-        } catch (ClassCastException e) {
-            e.printStackTrace();
-        }
-        return false;
+        ensureCapacity(size + 1);
+        elements[size++] = element;
+        return true;
     }
 
     @Override
     public void add(int index, T element) {
         rangeCheckForAdd(index);
-        try {
-            ensureCapacity(size + 1);
-            System.arraycopy(elements, index, elements, index + 1, size - index);
-            elements[index] = element;
-            size++;
-        } catch (ClassCastException e) {
-            e.printStackTrace();
-        }
+        ensureCapacity(size + 1);
+        System.arraycopy(elements, index, elements, index + 1, size - index);
+        elements[index] = element;
+        size++;
     }
 
     private void ensureCapacity(int demandCapacity) {
@@ -88,14 +79,9 @@ public class MyArrayList<T> implements List<T> {
     @Override
     public T set(int index, T element) {
         rangeCheck(index);
-        try {
-            T oldElement = elements[index];
-            elements[index] = element;
-            return oldElement;
-        } catch (ClassCastException e) {
-            e.printStackTrace();
-        }
-        return null;
+        T oldElement = elements[index];
+        elements[index] = element;
+        return oldElement;
     }
 
     @Override
