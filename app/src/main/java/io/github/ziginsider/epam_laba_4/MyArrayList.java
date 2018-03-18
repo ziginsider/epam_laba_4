@@ -30,15 +30,28 @@ public class MyArrayList<T> implements List<T> {
     }
 
     @Override
-    public boolean add(T t) {
+    public boolean add(T element) {
         try {
             ensureCapacity(size + 1);
-            elements[size++] = t;
+            elements[size++] = element;
             return  true;
         } catch (ClassCastException e) {
             e.printStackTrace();
         }
         return  false;
+    }
+
+    @Override
+    public void add(int index, T element) {
+        try {
+            rangeCheckForAdd(index);
+            ensureCapacity(size + 1);
+            System.arraycopy(elements, index, elements, index + 1, size - index);
+            elements[index] = element;
+            size++;
+        } catch (ClassCastException e) {
+            e.printStackTrace();
+        }
     }
 
     private void ensureCapacity(int demandCapacity) {
@@ -63,8 +76,21 @@ public class MyArrayList<T> implements List<T> {
     }
 
     private void rangeCheck(int index) {
-        if (index < 0 || index >= this.size)
+        if (index < 0 || index >= size)
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+    }
+
+    private void rangeCheckForAdd(int index) {
+        if (index < 0 || index > size)
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+    }
+
+    @Override
+    public T set(int index, T element) {
+        rangeCheck(index);
+        T oldElement = elements[index];
+        elements[index] = element;
+        return oldElement;
     }
 
     /*
@@ -107,16 +133,6 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public void clear() {
-
-    }
-
-    @Override
-    public T set(int i, T t) {
-        return null;
-    }
-
-    @Override
-    public void add(int i, T t) {
 
     }
 
