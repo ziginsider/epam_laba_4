@@ -43,8 +43,8 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public void add(int index, T element) {
+        rangeCheckForAdd(index);
         try {
-            rangeCheckForAdd(index);
             ensureCapacity(size + 1);
             System.arraycopy(elements, index, elements, index + 1, size - index);
             elements[index] = element;
@@ -88,9 +88,29 @@ public class MyArrayList<T> implements List<T> {
     @Override
     public T set(int index, T element) {
         rangeCheck(index);
+        try {
+            T oldElement = elements[index];
+            elements[index] = element;
+            return oldElement;
+        } catch (ClassCastException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public T remove(int index) {
+        rangeCheck(index);
         T oldElement = elements[index];
-        elements[index] = element;
-        return oldElement;
+        if (size - 1 != index) {
+            System.arraycopy(elements, index + 1, elements, index, size - index - 1);
+        }
+        elements[--size] = null;
+        return  oldElement;
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        return false;
     }
 
     /*
@@ -100,11 +120,6 @@ public class MyArrayList<T> implements List<T> {
     *
     *
     */
-
-    @Override
-    public boolean remove(Object o) {
-        return false;
-    }
 
     @Override
     public boolean containsAll(@NonNull Collection<?> collection) {
@@ -134,11 +149,6 @@ public class MyArrayList<T> implements List<T> {
     @Override
     public void clear() {
 
-    }
-
-    @Override
-    public T remove(int i) {
-        return null;
     }
 
     @Override
