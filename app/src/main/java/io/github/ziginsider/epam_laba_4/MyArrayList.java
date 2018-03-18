@@ -57,8 +57,9 @@ public class MyArrayList<T> implements List<T> {
     }
 
     @Override
-    public T get(int i) {
-
+    public T get(int index) {
+        rangeCheck(index);
+        return elements[index];
     }
 
     private void rangeCheck(int index) {
