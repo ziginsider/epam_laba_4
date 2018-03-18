@@ -132,6 +132,11 @@ public class MyArrayList<T> implements List<T> {
         size = 0;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
     /*
     *
     *
@@ -191,11 +196,6 @@ public class MyArrayList<T> implements List<T> {
     @Override
     public List<T> subList(int i, int i1) {
         return null;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return false;
     }
 
     @Override
