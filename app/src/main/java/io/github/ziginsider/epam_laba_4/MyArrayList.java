@@ -52,6 +52,29 @@ public class MyArrayList<T> implements List<T> {
     }
 
     @Override
+    public int size() {
+        return size;
+    }
+
+    @Override
+    public T get(int i) {
+
+    }
+
+    private void rangeCheck(int index) {
+        if (index < 0 || index >= this.size)
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+    }
+
+    /*
+    *
+    *
+    * Below not implemented
+    *
+    *
+    */
+
+    @Override
     public boolean remove(Object o) {
         return false;
     }
@@ -84,11 +107,6 @@ public class MyArrayList<T> implements List<T> {
     @Override
     public void clear() {
 
-    }
-
-    @Override
-    public T get(int i) {
-        return null;
     }
 
     @Override
@@ -132,11 +150,6 @@ public class MyArrayList<T> implements List<T> {
     @Override
     public List<T> subList(int i, int i1) {
         return null;
-    }
-
-    @Override
-    public int size() {
-        return size;
     }
 
     @Override
