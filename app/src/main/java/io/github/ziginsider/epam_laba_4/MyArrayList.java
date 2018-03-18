@@ -12,7 +12,6 @@ import java.util.ListIterator;
  */
 
 public class MyArrayList<T> implements List<T> {
-
     private static final int START_CAPACITY = 10;
 
     private T[] elements;

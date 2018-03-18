@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Log.d(TAG, "check: Iterator");
-        for(String element : myStringArray) {
+        for (String element : myStringArray) {
             Log.d(TAG, "check: iterator string element = " + element);
         }
     }
