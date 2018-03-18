@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "check: add integer element = " + i);
             myIntArray.add(i);
         }
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 24; i++) {
             Log.d(TAG, "check: get integer element with index "
                     + i + " = " + myIntArray.get(i).toString());
         }
