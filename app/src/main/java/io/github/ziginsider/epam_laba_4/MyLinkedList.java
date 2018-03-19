@@ -81,6 +81,33 @@ public class MyLinkedList<T> implements List<T> {
         return findNode(index).element;
     }
 
+    @Override
+    public T remove(int index) {
+        rangeCheck(index);
+        Node<T> foundNode = findNode(index);
+        T oldElement = foundNode.element;
+        foundNode.prevNode.nextNode = foundNode.nextNode;
+        foundNode.nextNode.prevNode = foundNode.prevNode;
+        foundNode.nextNode = foundNode.prevNode = null;
+        foundNode.element = null;
+        size--;
+        return oldElement;
+    }
+
+    @Override
+    public boolean remove(Object object) {
+        Node<T> foundNode = findNodeByElement(object);
+        if (!foundNode.equals(header)) {
+            foundNode.prevNode.nextNode = foundNode.nextNode;
+            foundNode.nextNode.prevNode = foundNode.prevNode;
+            foundNode.nextNode = foundNode.prevNode = null;
+            foundNode.element = null;
+            size--;
+            return true;
+        }
+        return false;
+    }
+
     private Node<T> findNode(int index) {
         Node<T> foundNode = header;
         if (index < (size >> 1)) {
@@ -93,6 +120,17 @@ public class MyLinkedList<T> implements List<T> {
             }
         }
         return foundNode;
+    }
+
+    private Node<T> findNodeByElement(Object object) {
+        Node<T> foundNode = header;
+        for (int i = 0; i < size; i++) {
+            foundNode = foundNode.nextNode;
+            if (foundNode.element.equals(object)) {
+                return foundNode;
+            }
+        }
+        return header;
     }
 
     private void rangeCheckForAdd(int index) {
@@ -133,11 +171,6 @@ public class MyLinkedList<T> implements List<T> {
     }
 
     @Override
-    public boolean remove(Object o) {
-        return false;
-    }
-
-    @Override
     public boolean containsAll(@NonNull Collection<?> collection) {
         return false;
     }
@@ -165,11 +198,6 @@ public class MyLinkedList<T> implements List<T> {
     @Override
     public void clear() {
 
-    }
-
-    @Override
-    public T remove(int i) {
-        return null;
     }
 
     @Override
