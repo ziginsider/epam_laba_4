@@ -82,5 +82,25 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "check: get integer element with index "
                     + i + " = " + myIntLinkedList.get(i).toString());
         }
+
+        Log.d(TAG, "check: MyLinkedList::set(int index, T element)");
+        myIntLinkedList.set(4, 20);
+        myIntLinkedList.set(23, 33);
+        for (int i = 0; i < myIntLinkedList.size(); i++) {
+            Log.d(TAG, "check: get integer element with index "
+                    + i + " = " + myIntLinkedList.get(i).toString());
+        }
+
+        Log.d(TAG, "check: MyLinkedList::add(int index, T element)");
+        myIntLinkedList.add(0, 55);
+        myIntLinkedList.add(0, 66);
+        myIntLinkedList.add(0, 77);
+        myIntLinkedList.add(10, 111);
+        myIntLinkedList.add(10, 222);
+        myIntLinkedList.add(10, 333);
+        for (int i = 0; i < myIntLinkedList.size(); i++) {
+            Log.d(TAG, "check: get integer element with index "
+                    + i + " = " + myIntLinkedList.get(i).toString());
+        }
     }
 }
