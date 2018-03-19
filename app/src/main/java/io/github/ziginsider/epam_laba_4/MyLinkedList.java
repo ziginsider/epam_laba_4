@@ -108,6 +108,19 @@ public class MyLinkedList<T> implements List<T> {
         return false;
     }
 
+    @Override
+    public void clear() {
+        Node<T> cursor = header.nextNode;
+        for (int i = 0; i < size; i++) {
+            Node<T> nextNode = cursor.nextNode;
+            cursor.element = null;
+            cursor.nextNode = null;
+            cursor.prevNode = null;
+            cursor = nextNode;
+        }
+        size = 0;
+    }
+
     private Node<T> findNode(int index) {
         Node<T> foundNode = header;
         if (index < (size >> 1)) {
@@ -150,6 +163,7 @@ public class MyLinkedList<T> implements List<T> {
     }
 
     private class MyIterator<T> implements Iterator<T> {
+
         private Node<T> cursor;
 
         MyIterator(Node<T> header) {
@@ -158,7 +172,7 @@ public class MyLinkedList<T> implements List<T> {
 
         @Override
         public boolean hasNext() {
-            return cursor != header;
+            return (cursor != header && size != 0);
         }
 
         @Override
@@ -213,11 +227,6 @@ public class MyLinkedList<T> implements List<T> {
     @Override
     public boolean retainAll(@NonNull Collection<?> collection) {
         return false;
-    }
-
-    @Override
-    public void clear() {
-
     }
 
     @Override

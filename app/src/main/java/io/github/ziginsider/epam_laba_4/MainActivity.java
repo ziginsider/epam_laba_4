@@ -125,5 +125,12 @@ public class MainActivity extends AppCompatActivity {
         for (Integer integer : myIntLinkedList) {
             Log.d(TAG, "check: iterator integer element = " + integer);
         }
+
+        myIntLinkedList.clear();
+
+        Log.d(TAG, "check: MyLinkedList::clear()");
+        for (Integer integer : myIntLinkedList) {
+            Log.d(TAG, "check: iterator integer element = " + integer);
+        }
     }
 }
