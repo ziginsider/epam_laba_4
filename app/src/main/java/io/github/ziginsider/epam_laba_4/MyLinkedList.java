@@ -15,7 +15,7 @@ public class MyLinkedList<T> implements List<T> {
     private int size;
     private Node<T> header;
 
-    public MyLinkedList() {
+    MyLinkedList() {
         size = 0;
         header = new Node<>(null, null, null);
         header.nextNode = header.prevNode = header;
@@ -26,7 +26,7 @@ public class MyLinkedList<T> implements List<T> {
         Node<T> nextNode;
         Node<T> prevNode;
 
-        public Node(T element, Node<T> nextNode, Node<T> prevNode) {
+        Node(T element, Node<T> nextNode, Node<T> prevNode) {
             this.element = element;
             this.nextNode = nextNode;
             this.prevNode = prevNode;
@@ -143,6 +143,32 @@ public class MyLinkedList<T> implements List<T> {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
     }
 
+    @NonNull
+    @Override
+    public Iterator<T> iterator() {
+        return new MyIterator<>(header);
+    }
+
+    private class MyIterator<T> implements Iterator<T> {
+        private Node<T> cursor;
+
+        MyIterator(Node<T> header) {
+            this.cursor = header.nextNode;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return cursor != header;
+        }
+
+        @Override
+        public T next() {
+            T element = cursor.element;
+            cursor = cursor.nextNode;
+            return element;
+        }
+    }
+
     /*
     * Below not implemented
     */
@@ -150,12 +176,6 @@ public class MyLinkedList<T> implements List<T> {
     @Override
     public boolean contains(Object o) {
         return false;
-    }
-
-    @NonNull
-    @Override
-    public Iterator<T> iterator() {
-        return null;
     }
 
     @NonNull

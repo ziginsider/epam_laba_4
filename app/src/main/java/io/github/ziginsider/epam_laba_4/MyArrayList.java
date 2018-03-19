@@ -1,6 +1,7 @@
 package io.github.ziginsider.epam_laba_4;
 
 import android.support.annotation.NonNull;
+
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -16,11 +17,11 @@ public class MyArrayList<T> implements List<T> {
     private T[] elements;
     private int size;
 
-    public MyArrayList() {
+    MyArrayList() {
         this(START_CAPACITY);
     }
 
-    public MyArrayList(int capacity) {
+    MyArrayList(int capacity) {
         if (capacity < 0)
             throw new IllegalArgumentException("Illegal Capacity: " + capacity);
         elements = (T[]) new Object[capacity];
@@ -131,7 +132,7 @@ public class MyArrayList<T> implements List<T> {
         private int index = 0;
         private T[] elements;
 
-        public MyIterator(T[] elements) {
+        MyIterator(T[] elements) {
             this.elements = elements;
         }
 

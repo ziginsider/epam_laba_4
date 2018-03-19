@@ -3,6 +3,7 @@ package io.github.ziginsider.epam_laba_4;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                     + i + " = " + myStringArray.get(i));
         }
 
-        Log.d(TAG, "check: Iterator");
+        Log.d(TAG, "check: MyArrayList::Iterator");
         for (String element : myStringArray) {
             Log.d(TAG, "check: iterator string element = " + element);
         }
@@ -114,9 +115,15 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "check: MyLinkedList::remove(Object object)");
         myIntLinkedList.remove((Integer) 77);
         myIntLinkedList.remove((Integer) 333);
+        myIntLinkedList.remove((Integer) 4444);
         for (int i = 0; i < myIntLinkedList.size(); i++) {
             Log.d(TAG, "check: get integer element with index "
                     + i + " = " + myIntLinkedList.get(i).toString());
+        }
+
+        Log.d(TAG, "check: MyLinkedList::Iterator");
+        for (Integer integer : myIntLinkedList) {
+            Log.d(TAG, "check: iterator integer element = " + integer);
         }
     }
 }
