@@ -62,6 +62,7 @@ public class MyLinkedList<T> implements List<T> {
             Node<T> newNode = new Node<>(element, foundNode, foundNode.prevNode);
             foundNode.prevNode.nextNode = newNode;
             foundNode.prevNode = newNode;
+            size++;
         }
     }
 
