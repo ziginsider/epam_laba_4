@@ -102,5 +102,21 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "check: get integer element with index "
                     + i + " = " + myIntLinkedList.get(i).toString());
         }
+
+        Log.d(TAG, "check: MyLinkedList::remove(int index)");
+        myIntLinkedList.remove(5);
+        myIntLinkedList.remove(20);
+        for (int i = 0; i < myIntLinkedList.size(); i++) {
+            Log.d(TAG, "check: get integer element with index "
+                    + i + " = " + myIntLinkedList.get(i).toString());
+        }
+
+        Log.d(TAG, "check: MyLinkedList::remove(Object object)");
+        myIntLinkedList.remove((Integer) 77);
+        myIntLinkedList.remove((Integer) 333);
+        for (int i = 0; i < myIntLinkedList.size(); i++) {
+            Log.d(TAG, "check: get integer element with index "
+                    + i + " = " + myIntLinkedList.get(i).toString());
+        }
     }
 }
