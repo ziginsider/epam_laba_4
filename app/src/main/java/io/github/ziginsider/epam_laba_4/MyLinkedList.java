@@ -17,7 +17,7 @@ public class MyLinkedList<T> implements List<T> {
 
     public MyLinkedList() {
         size = 0;
-        //header.element = null;
+        header = new Node<>(null, null, null);
         header.nextNode = header.prevNode = header;
     }
 
@@ -73,6 +73,12 @@ public class MyLinkedList<T> implements List<T> {
         T oldElement = foundNode.element;
         foundNode.element = element;
         return oldElement;
+    }
+
+    @Override
+    public T get(int index) {
+        rangeCheck(index);
+        return findNode(index).element;
     }
 
     private Node<T> findNode(int index) {
@@ -159,11 +165,6 @@ public class MyLinkedList<T> implements List<T> {
     @Override
     public void clear() {
 
-    }
-
-    @Override
-    public T get(int i) {
-        return null;
     }
 
     @Override

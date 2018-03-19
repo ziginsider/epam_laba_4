@@ -68,5 +68,19 @@ public class MainActivity extends AppCompatActivity {
         for (String element : myStringArray) {
             Log.d(TAG, "check: iterator string element = " + element);
         }
+
+        Log.d(TAG, "check: start check MyLinkedList with Integer elements");
+        List<Integer> myIntLinkedList = new MyLinkedList<>();
+        if (myIntLinkedList.isEmpty()) {
+            Log.d(TAG, "check: myIntLinkedList is empty");
+        }
+        for (int i = 1; i < 25; i++) {
+            Log.d(TAG, "check: Into myIntLinkedList add integer element = " + i);
+            myIntLinkedList.add(i);
+        }
+        for (int i = 0; i < myIntLinkedList.size(); i++) {
+            Log.d(TAG, "check: get integer element with index "
+                    + i + " = " + myIntLinkedList.get(i).toString());
+        }
     }
 }
