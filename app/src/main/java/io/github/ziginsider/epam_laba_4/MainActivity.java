@@ -70,6 +70,16 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "check: iterator string element = " + element);
         }
 
+        Log.d(TAG, "check: MyArrayList::clear()");
+        myStringArray.clear();
+        for (String element : myStringArray) {
+            Log.d(TAG, "check: iterator string element = " + element);
+        }
+
+
+        /*MyLinkedList*/
+
+
         Log.d(TAG, "check: start check MyLinkedList with Integer elements");
         List<Integer> myIntLinkedList = new MyLinkedList<>();
         if (myIntLinkedList.isEmpty()) {
