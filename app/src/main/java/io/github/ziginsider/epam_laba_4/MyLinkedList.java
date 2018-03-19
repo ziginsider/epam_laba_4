@@ -18,7 +18,7 @@ public class MyLinkedList<T> implements List<T> {
     public MyLinkedList() {
         size = 0;
         //header.element = null;
-        this.header.nextNode = this.header.prevNode = this.header;
+        header.nextNode = header.prevNode = header;
     }
 
     private static class Node<T> {
@@ -66,6 +66,15 @@ public class MyLinkedList<T> implements List<T> {
         }
     }
 
+    @Override
+    public T set(int index, T element) {
+        rangeCheck(index);
+        Node<T> foundNode = findNode(index);
+        T oldElement = foundNode.element;
+        foundNode.element = element;
+        return oldElement;
+    }
+
     private Node<T> findNode(int index) {
         Node<T> foundNode = header;
         if (index < (size >> 1)) {
@@ -82,6 +91,11 @@ public class MyLinkedList<T> implements List<T> {
 
     private void rangeCheckForAdd(int index) {
         if (index < 0 || index > size)
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+    }
+
+    private void rangeCheck(int index) {
+        if (index < 0 || index >= size)
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
     }
 
@@ -149,11 +163,6 @@ public class MyLinkedList<T> implements List<T> {
 
     @Override
     public T get(int i) {
-        return null;
-    }
-
-    @Override
-    public T set(int i, T t) {
         return null;
     }
 
