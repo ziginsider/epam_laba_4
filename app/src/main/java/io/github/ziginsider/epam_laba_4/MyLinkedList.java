@@ -1,6 +1,7 @@
 package io.github.ziginsider.epam_laba_4;
 
 import android.support.annotation.NonNull;
+
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -49,6 +50,38 @@ public class MyLinkedList<T> implements List<T> {
         newNode.nextNode.prevNode = newNode;
         size++;
         return true;
+    }
+
+    @Override
+    public void add(int index, T element) {
+        rangeCheckForAdd(index);
+        if (index == size) {
+            add(element);
+        } else {
+            Node<T> foundNode = findNode(index);
+            Node<T> newNode = new Node<>(element, foundNode, foundNode.prevNode);
+            foundNode.prevNode.nextNode = newNode;
+            foundNode.prevNode = newNode;
+        }
+    }
+
+    private Node<T> findNode(int index) {
+        Node<T> foundNode = header;
+        if (index < (size >> 1)) {
+            for (int i = 0; i <= index; i++) {
+                foundNode = foundNode.nextNode;
+            }
+        } else {
+            for (int i = size; i > index; i--) {
+                foundNode = foundNode.prevNode;
+            }
+        }
+        return foundNode;
+    }
+
+    private void rangeCheckForAdd(int index) {
+        if (index < 0 || index > size)
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
     }
 
     /*
@@ -121,11 +154,6 @@ public class MyLinkedList<T> implements List<T> {
     @Override
     public T set(int i, T t) {
         return null;
-    }
-
-    @Override
-    public void add(int i, T t) {
-
     }
 
     @Override
