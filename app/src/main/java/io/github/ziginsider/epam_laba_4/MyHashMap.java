@@ -23,6 +23,7 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
         loadFactor = START_LOAD_FACTOR;
         treshold = (int) (START_CAPACITY * START_LOAD_FACTOR);
         table = new Entry[START_CAPACITY];
+        size = 0;
     }
 
     public MyHashMap(int startCapacity, float loadFactor) {
@@ -35,6 +36,7 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
         this.loadFactor = loadFactor;
         treshold = (int) (startCapacity * loadFactor);
         table = new Entry[startCapacity];
+        size = 0;
     }
 
     public MyHashMap(int startCapacity) {
@@ -87,14 +89,14 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
         return size;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
     /*
     * Below not implemented
     */
-
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
 
     @Override
     public boolean containsKey(Object o) {
