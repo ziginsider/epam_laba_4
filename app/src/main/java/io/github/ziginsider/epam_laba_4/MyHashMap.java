@@ -1,6 +1,7 @@
 package io.github.ziginsider.epam_laba_4;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.util.Collection;
 import java.util.Map;
@@ -16,12 +17,12 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
 
     private int size;
     private Entry[] table;
-    private int treshold;
+    private int threshold;
     private final float loadFactor;
 
     public MyHashMap() {
         loadFactor = START_LOAD_FACTOR;
-        treshold = (int) (START_CAPACITY * START_LOAD_FACTOR);
+        threshold = (int) (START_CAPACITY * START_LOAD_FACTOR);
         table = new Entry[START_CAPACITY];
         size = 0;
     }
@@ -34,7 +35,7 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
             throw new IllegalArgumentException("Illegal load factor: " + loadFactor);
         }
         this.loadFactor = loadFactor;
-        treshold = (int) (startCapacity * loadFactor);
+        threshold = (int) (startCapacity * loadFactor);
         table = new Entry[startCapacity];
         size = 0;
     }
@@ -94,6 +95,44 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
         return size == 0;
     }
 
+    @Override
+    public VALUE put(KEY key, VALUE value) {
+        if (key == null) return putForNullKey(value);
+        int hash = hash(key.hashCode());
+        int index = indexFor(hash, table.length);
+        for (Entry<KEY, VALUE> entry = table[index]; entry != null; entry = entry.next) {
+            if (entry.hash == hash && (entry.key == key || key.equals(entry.key))) {
+                VALUE oldValue = entry.value;
+                entry.value = value;
+                return oldValue;
+            }
+        }
+        addEntry(hash, key, value, index);
+        return null;
+    }
+    
+    private VALUE putForNullKey(VALUE value) {
+        for (Entry<KEY,VALUE> entry = table[0]; entry != null; entry = entry.next) {
+            if (entry.key == null) {
+                VALUE oldValue = entry.value;
+                entry.value = value;
+                return oldValue;
+            }
+        }
+        addEntry(0, null, value, 0);
+        return null;
+    }
+
+    private void addEntry(int hash, KEY key, VALUE value, int index) {
+        Entry<KEY,VALUE> topEntry = table[index];
+        table[index] = new Entry<>(hash, key, value, topEntry);
+        if (size++ >= threshold) {
+            resize(2 * table.length);
+        }
+    }
+
+
+
     /*
     * Below not implemented
     */
@@ -110,11 +149,6 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
 
     @Override
     public VALUE get(Object o) {
-        return null;
-    }
-
-    @Override
-    public VALUE put(KEY key, VALUE value) {
         return null;
     }
 
