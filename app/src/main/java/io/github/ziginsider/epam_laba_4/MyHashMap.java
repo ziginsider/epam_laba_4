@@ -19,7 +19,27 @@ public class MyHashMap<KEY,VALUE> implements Map<KEY,VALUE> {
     private int treshold;
     private final float loadFactor;
 
+    public MyHashMap() {
+        loadFactor = START_LOAD_FACTOR;
+        treshold = (int)(START_CAPACITY * START_LOAD_FACTOR);
+        table = new Entry[START_CAPACITY];
+    }
 
+    public MyHashMap(int startCapacity, float loadFactor) {
+        if (startCapacity < 0) {
+            throw new IllegalArgumentException("Illegal start capacity: " + startCapacity);
+        }
+        if (loadFactor <= 0 || Float.isNaN(loadFactor)) {
+            throw new IllegalArgumentException("Illegal load factor: " + loadFactor);
+        }
+        this.loadFactor = loadFactor;
+        treshold = (int)(startCapacity * loadFactor);
+        table = new Entry[startCapacity];
+    }
+
+    public MyHashMap(int startCapacity) {
+        this(startCapacity, START_LOAD_FACTOR);
+    }
 
     static class Entry<KEY,VALUE> implements Map.Entry<KEY,VALUE> {
 
