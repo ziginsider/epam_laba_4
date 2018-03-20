@@ -152,6 +152,19 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
         threshold = (int) (newCapacity * loadFactor);
     }
 
+    @Override
+    public VALUE get(Object key) {
+        if (key == null) return getForNullKey();
+        int hash = hash(key.hashCode());
+        int index = indexFor(hash, table.length);
+        for (Entry<KEY, VALUE> entry = table[index]; entry != null; entry = entry.next) {
+            if (entry.hash == hash && (entry.key == key || key.equals(entry.key))) {
+                return entry.value;
+            }
+        }
+        return null;
+    }
+
     /*
     * Below not implemented
     */
@@ -164,11 +177,6 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
     @Override
     public boolean containsValue(Object o) {
         return false;
-    }
-
-    @Override
-    public VALUE get(Object o) {
-        return null;
     }
 
     @Override
