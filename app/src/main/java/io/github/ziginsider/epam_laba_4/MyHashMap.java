@@ -10,7 +10,7 @@ import java.util.Set;
  * Created by zigin on 20.03.2018.
  */
 
-public class MyHashMap<KEY,VALUE> implements Map<KEY,VALUE> {
+public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
     private static final int START_CAPACITY = 16;
     private static final float START_LOAD_FACTOR = 0.75f;
 
@@ -21,7 +21,7 @@ public class MyHashMap<KEY,VALUE> implements Map<KEY,VALUE> {
 
     public MyHashMap() {
         loadFactor = START_LOAD_FACTOR;
-        treshold = (int)(START_CAPACITY * START_LOAD_FACTOR);
+        treshold = (int) (START_CAPACITY * START_LOAD_FACTOR);
         table = new Entry[START_CAPACITY];
     }
 
@@ -33,7 +33,7 @@ public class MyHashMap<KEY,VALUE> implements Map<KEY,VALUE> {
             throw new IllegalArgumentException("Illegal load factor: " + loadFactor);
         }
         this.loadFactor = loadFactor;
-        treshold = (int)(startCapacity * loadFactor);
+        treshold = (int) (startCapacity * loadFactor);
         table = new Entry[startCapacity];
     }
 
@@ -41,12 +41,12 @@ public class MyHashMap<KEY,VALUE> implements Map<KEY,VALUE> {
         this(startCapacity, START_LOAD_FACTOR);
     }
 
-    static class Entry<KEY,VALUE> implements Map.Entry<KEY,VALUE> {
+    static class Entry<KEY, VALUE> implements Map.Entry<KEY, VALUE> {
 
         final int hash;
         final KEY key;
         VALUE value;
-        Entry<KEY,VALUE> next;
+        Entry<KEY, VALUE> next;
 
         public Entry(int hash, KEY key, VALUE value, Entry<KEY, VALUE> next) {
             this.hash = hash;
@@ -71,6 +71,15 @@ public class MyHashMap<KEY,VALUE> implements Map<KEY,VALUE> {
             this.value = value;
             return oldValue;
         }
+    }
+
+    static int hash(int keyHash) {
+        keyHash ^= (keyHash >>> 20) ^ (keyHash >>> 12);
+        return keyHash ^ (keyHash >>> 7) ^ (keyHash >>> 4);
+    }
+
+    static int indexFor(int hash, int length) {
+        return hash & (length - 1);
     }
 
     /*
