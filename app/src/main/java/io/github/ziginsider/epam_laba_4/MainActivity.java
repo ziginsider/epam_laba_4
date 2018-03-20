@@ -142,5 +142,9 @@ public class MainActivity extends AppCompatActivity {
         for (Integer integer : myIntLinkedList) {
             Log.d(TAG, "check: iterator integer element = " + integer);
         }
+
+        //MyHashMap
+        CheckImplementations c = new CheckImplementations();
+        c.launchCkekingMyHashMap();
     }
 }

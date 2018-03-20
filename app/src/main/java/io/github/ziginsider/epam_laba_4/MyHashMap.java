@@ -210,14 +210,14 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
         if (key == null) hash = 0;
         else hash = hash(key.hashCode());
         int index = indexFor(hash, table.length);
-        for (Entry<KEY, VALUE> prev = table[index], entry = prev;
+        for (Entry<KEY, VALUE> prev = table[index], entry = table[index];
              entry != null;
              prev = entry, entry = entry.next) {
             if (entry.hash == hash && (entry.key == key || key.equals(entry.key))) {
+                VALUE oldValue = entry.value;
                 size--;
                 if (prev == entry) table[index] = entry.next;
                 else prev.next = entry.next;
-                VALUE oldValue = entry.value;
                 return oldValue;
             }
         }
