@@ -46,8 +46,8 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
      * Constructs an empty {@link MyHashMap} with the specified start
      * capacity and load factor
      *
-     * @param startCapacity
-     * @param loadFactor
+     * @param startCapacity start capacity
+     * @param loadFactor    load factor
      */
     public MyHashMap(int startCapacity, float loadFactor) {
         if (startCapacity < 0) {
@@ -66,7 +66,7 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
      * Constructs an empty {@link MyHashMap} with the specified start
      * capacity and load factor = 0.75
      *
-     * @param startCapacity
+     * @param startCapacity start capacity
      */
     public MyHashMap(int startCapacity) {
         this(startCapacity, START_LOAD_FACTOR);
@@ -118,7 +118,7 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
      * Returns index for hash code Entry's hash.
      *
      * @param hash   Entry's hash code
-     * @param length - lenght of {@link MyHashMap#table}
+     * @param length length of {@link MyHashMap#table}
      * @return index in {@link MyHashMap#table}
      */
     static int indexFor(int hash, int length) {
