@@ -82,14 +82,14 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
         return hash & (length - 1);
     }
 
+    @Override
+    public int size() {
+        return size;
+    }
+
     /*
     * Below not implemented
     */
-
-    @Override
-    public int size() {
-        return 0;
-    }
 
     @Override
     public boolean isEmpty() {
