@@ -15,16 +15,47 @@ public class MyHashMap<KEY,VALUE> implements Map<KEY,VALUE> {
     private static final float START_LOAD_FACTOR = 0.75f;
 
     private int size;
-    private Node[] table;
+    private Entry[] table;
     private int treshold;
     private final float loadFactor;
 
-    
+
+
+    static class Entry<KEY,VALUE> implements Map.Entry<KEY,VALUE> {
+
+        final int hash;
+        final KEY key;
+        VALUE value;
+        Entry<KEY,VALUE> next;
+
+        public Entry(int hash, KEY key, VALUE value, Entry<KEY, VALUE> next) {
+            this.hash = hash;
+            this.key = key;
+            this.value = value;
+            this.next = next;
+        }
+
+        @Override
+        public KEY getKey() {
+            return key;
+        }
+
+        @Override
+        public VALUE getValue() {
+            return value;
+        }
+
+        @Override
+        public VALUE setValue(VALUE value) {
+            VALUE oldValue = this.value;
+            this.value = value;
+            return oldValue;
+        }
+    }
 
     /*
     * Below not implemented
     */
-
 
     @Override
     public int size() {
@@ -47,22 +78,22 @@ public class MyHashMap<KEY,VALUE> implements Map<KEY,VALUE> {
     }
 
     @Override
-    public Object get(Object o) {
+    public VALUE get(Object o) {
         return null;
     }
 
     @Override
-    public Object put(Object o, Object o2) {
+    public VALUE put(KEY key, VALUE value) {
         return null;
     }
 
     @Override
-    public Object remove(Object o) {
+    public VALUE remove(Object o) {
         return null;
     }
 
     @Override
-    public void putAll(@NonNull Map map) {
+    public void putAll(@NonNull Map<? extends KEY, ? extends VALUE> map) {
 
     }
 
@@ -73,19 +104,20 @@ public class MyHashMap<KEY,VALUE> implements Map<KEY,VALUE> {
 
     @NonNull
     @Override
-    public Set keySet() {
+    public Set<KEY> keySet() {
         return null;
     }
 
     @NonNull
     @Override
-    public Collection values() {
+    public Collection<VALUE> values() {
         return null;
     }
 
     @NonNull
     @Override
-    public Set<Entry> entrySet() {
+    public Set<Map.Entry<KEY, VALUE>> entrySet() {
         return null;
     }
+
 }
