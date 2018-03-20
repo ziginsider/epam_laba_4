@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPropertyAnimatorListenerAdapter;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -209,8 +210,6 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
         if (key == null) hash = 0;
         else hash = hash(key.hashCode());
         int index = indexFor(hash, table.length);
-        //Entry<KEY, VALUE> prev = table[index];
-        //Entry<KEY, VALUE> entry = prev;
         for (Entry<KEY, VALUE> prev = table[index], entry = prev;
              entry != null;
              prev = entry, entry = entry.next) {
@@ -232,6 +231,16 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
         size = 0;
     }
 
+    @NonNull
+    @Override
+    public Collection<VALUE> values() {
+        List<VALUE> values = new MyArrayList<>();
+        for (int i = 0; i < table.length; i++)
+            for (Entry entry = table[i]; entry != null; entry = entry.next)
+                values.add((VALUE) entry.value);
+        return values;
+    }
+
     /*
     * Below not implemented
     */
@@ -244,12 +253,6 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
     @NonNull
     @Override
     public Set<KEY> keySet() {
-        return null;
-    }
-
-    @NonNull
-    @Override
-    public Collection<VALUE> values() {
         return null;
     }
 
