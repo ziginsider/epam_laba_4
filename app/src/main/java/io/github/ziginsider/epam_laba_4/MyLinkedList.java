@@ -10,13 +10,13 @@ import java.util.ListIterator;
 
 /**
  * Implementation LinkedList by interface {@link List}
- *
+ * <p>
  * <p>Implemented methods: {@link MyLinkedList#size()}, {@link MyLinkedList#isEmpty()},
  * {@link MyLinkedList#add(Object)}, {@link MyLinkedList#add(int, Object)},
  * {@link MyLinkedList#set(int, Object)}, {@link MyLinkedList#get(int)},
  * {@link MyLinkedList#remove(Object)}, {@link MyLinkedList#remove(int)},
  * {@link MyLinkedList#clear()}, {@link MyLinkedList#iterator()}
- *
+ * <p>
  * <p>Not implemented methods: {@link MyLinkedList#contains(Object)},
  * {@link MyLinkedList#containsAll(Collection)}, {@link MyLinkedList#toArray()},
  * {@link MyLinkedList#toArray(Object[])}, {@link MyLinkedList#addAll(Collection)},
@@ -32,6 +32,9 @@ public class MyLinkedList<T> implements List<T> {
     private int size;
     private Node<T> header;
 
+    /**
+     * Constructs an empty list.
+     */
     MyLinkedList() {
         size = 0;
         header = new Node<>(null, null, null);
@@ -50,16 +53,32 @@ public class MyLinkedList<T> implements List<T> {
         }
     }
 
+    /**
+     * Returns the number of elements in this list.
+     *
+     * @return the number of elements in this list
+     */
     @Override
     public int size() {
         return size;
     }
 
+    /**
+     * Returns <tt>true</tt> if this list contains no values.
+     *
+     * @return <tt>true</tt> if this list contains no values
+     */
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    /**
+     * Appends the specified element to the end of this list.
+     *
+     * @param element element to be appended to this list
+     * @return <tt>true</tt>
+     */
     @Override
     public boolean add(T element) {
         Node<T> newNode = new Node<>(element, header, header.prevNode);
@@ -69,6 +88,14 @@ public class MyLinkedList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * Inserts the specified element at the specified position in this list.
+     * Shifts the element currently at that position and any
+     * subsequent elements to the right (adds one to their indices).
+     *
+     * @param index   index at which the specified element is to be inserted
+     * @param element element to be inserted
+     */
     @Override
     public void add(int index, T element) {
         rangeCheckForAdd(index);
@@ -83,6 +110,14 @@ public class MyLinkedList<T> implements List<T> {
         }
     }
 
+    /**
+     * Replaces the element at the specified position in this list with the
+     * specified element.
+     *
+     * @param index   index of the element to replace
+     * @param element element to be stored at the specified position
+     * @return the element previously at the specified position
+     */
     @Override
     public T set(int index, T element) {
         rangeCheck(index);
@@ -92,12 +127,26 @@ public class MyLinkedList<T> implements List<T> {
         return oldElement;
     }
 
+    /**
+     * Returns the element at the specified position in this list.
+     *
+     * @param index index of the element to return
+     * @return the element at the specified position in this list
+     */
     @Override
     public T get(int index) {
         rangeCheck(index);
         return findNode(index).element;
     }
 
+    /**
+     * Removes the element at the specified position in this list.  Shifts any
+     * subsequent elements to the left (subtracts one from their indices).
+     * Returns the element that was removed from the list.
+     *
+     * @param index the index of the element to be removed
+     * @return element previously at the specified position
+     */
     @Override
     public T remove(int index) {
         rangeCheck(index);
@@ -111,6 +160,14 @@ public class MyLinkedList<T> implements List<T> {
         return oldElement;
     }
 
+    /**
+     * Removes the first occurrence of the specified element from this list,
+     * if it is present.  If this list does not contain the element, it is
+     * unchanged.
+     *
+     * @param object element to be removed from this list, if present
+     * @return <tt>true</tt> if this list contained the specified element
+     */
     @Override
     public boolean remove(Object object) {
         Node<T> foundNode = findNodeByElement(object);
@@ -125,6 +182,10 @@ public class MyLinkedList<T> implements List<T> {
         return false;
     }
 
+    /**
+     * Removes all of the elements from this list.
+     * The list will be empty after this call returns.
+     */
     @Override
     public void clear() {
         Node<T> cursor = header.nextNode;
@@ -173,6 +234,12 @@ public class MyLinkedList<T> implements List<T> {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
     }
 
+    /**
+     * Returns an iterator of the elements in this list (in proper
+     * sequence
+     *
+     * @return iterator
+     */
     @NonNull
     @Override
     public Iterator<T> iterator() {

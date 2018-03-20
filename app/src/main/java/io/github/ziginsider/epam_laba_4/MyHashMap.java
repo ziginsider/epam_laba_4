@@ -9,13 +9,13 @@ import java.util.Set;
 
 /**
  * Implementation HashMap by interface {@link Map}
- *
+ * <p>
  * <p>Implemented methods: {@link MyHashMap#hash(int)}, {@link MyHashMap#indexFor(int, int)},
  * {@link MyHashMap#size()}, {@link MyHashMap#isEmpty()}, {@link MyHashMap#put(Object, Object)},
  * {@link MyHashMap#get(Object)}, {@link MyHashMap#containsKey(Object)},
  * {@link MyHashMap#containsValue(Object)}, {@link MyHashMap#clear()}, {@link MyHashMap#values()},
  * {@link MyHashMap#remove(Object)}
- *
+ * <p>
  * <p>Not implemented methods: {@link MyHashMap#putAll(Map)}, {@link MyHashMap#keySet()},
  * {@link MyHashMap#entrySet()}
  *
@@ -117,7 +117,7 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
     /**
      * Returns index for hash code Entry's hash.
      *
-     * @param hash Entry's hash code
+     * @param hash   Entry's hash code
      * @param length - lenght of {@link MyHashMap#table}
      * @return index in {@link MyHashMap#table}
      */
@@ -150,10 +150,10 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
      * If the map previously contained a mapping for the key, the old
      * value is replaced.
      *
-     * @param key key with which the specified value is to be associated
+     * @param key   key with which the specified value is to be associated
      * @param value value to be associated with the specified key
      * @return the previous value associated with <tt>key</tt>, or
-     *         <tt>null</tt> if there was no mapping for <tt>key</tt>.
+     * <tt>null</tt> if there was no mapping for <tt>key</tt>.
      */
     @Override
     public VALUE put(KEY key, VALUE value) {
@@ -268,7 +268,7 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
      *
      * @param value value whose presence in this map is to be tested
      * @return <tt>true</tt> if this map maps one or more keys to the
-     *         specified value
+     * specified value
      */
     @Override
     public boolean containsValue(Object value) {
@@ -291,7 +291,7 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
      *
      * @param key key key whose mapping is to be removed from the map
      * @return the previous value associated with <tt>key</tt>, or
-     *         <tt>null</tt> if there was no mapping for <tt>key</tt>.
+     * <tt>null</tt> if there was no mapping for <tt>key</tt>.
      */
     @Override
     public VALUE remove(Object key) {
