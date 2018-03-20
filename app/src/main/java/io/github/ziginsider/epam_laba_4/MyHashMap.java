@@ -2,6 +2,7 @@ package io.github.ziginsider.epam_laba_4;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPropertyAnimatorListenerAdapter;
 
 import java.util.Collection;
 import java.util.Map;
@@ -175,10 +176,9 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
     @Override
     public boolean containsKey(Object key) {
         int hash;
-        int index;
         if (key == null) hash = 0;
         else hash = hash(key.hashCode());
-        index = indexFor(hash, table.length);
+        int index = indexFor(hash, table.length);
         for (Entry<KEY, VALUE> entry = table[index]; entry != null; entry = entry.next) {
             if (entry.hash == hash && (entry.key == key || key.equals(entry.key))) {
                 return true;
@@ -203,22 +203,41 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
         return false;
     }
 
+    @Override
+    public VALUE remove(Object key) {
+        int hash;
+        if (key == null) hash = 0;
+        else hash = hash(key.hashCode());
+        int index = indexFor(hash, table.length);
+        //Entry<KEY, VALUE> prev = table[index];
+        //Entry<KEY, VALUE> entry = prev;
+        for (Entry<KEY, VALUE> prev = table[index], entry = prev;
+             entry != null;
+             prev = entry, entry = entry.next) {
+            if (entry.hash == hash && (entry.key == key || key.equals(entry.key))) {
+                size--;
+                if (prev == entry) table[index] = entry.next;
+                else prev.next = entry.next;
+                VALUE oldValue = entry.value;
+                return oldValue;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void clear() {
+        for (int i = 0; i < table.length; i++)
+            table[i] = null;
+        size = 0;
+    }
+
     /*
     * Below not implemented
     */
 
     @Override
-    public VALUE remove(Object o) {
-        return null;
-    }
-
-    @Override
     public void putAll(@NonNull Map<? extends KEY, ? extends VALUE> map) {
-
-    }
-
-    @Override
-    public void clear() {
 
     }
 
