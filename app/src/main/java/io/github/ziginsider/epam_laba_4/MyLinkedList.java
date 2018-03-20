@@ -163,7 +163,6 @@ public class MyLinkedList<T> implements List<T> {
     }
 
     private class MyIterator<T> implements Iterator<T> {
-
         private Node<T> cursor;
 
         MyIterator(Node<T> header) {
@@ -186,7 +185,6 @@ public class MyLinkedList<T> implements List<T> {
     /*
     * Below not implemented
     */
-
     @Override
     public boolean contains(Object o) {
         return false;

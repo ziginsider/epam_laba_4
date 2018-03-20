@@ -1,8 +1,6 @@
 package io.github.ziginsider.epam_laba_4;
 
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPropertyAnimatorListenerAdapter;
 
 import java.util.Collection;
 import java.util.List;
@@ -47,7 +45,6 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
     }
 
     static class Entry<KEY, VALUE> implements Map.Entry<KEY, VALUE> {
-
         final int hash;
         final KEY key;
         VALUE value;
@@ -244,10 +241,8 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
     /*
     * Below not implemented
     */
-
     @Override
     public void putAll(@NonNull Map<? extends KEY, ? extends VALUE> map) {
-
     }
 
     @NonNull
@@ -261,5 +256,4 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
     public Set<Map.Entry<KEY, VALUE>> entrySet() {
         return null;
     }
-
 }

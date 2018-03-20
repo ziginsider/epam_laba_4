@@ -15,9 +15,9 @@ public class CheckImplementations {
     Map<String, String> myHashMap = new MyHashMap<>();
     List<Integer> myIntArray = new MyArrayList<>();
     List<String> myStringArray = new MyArrayList<>();
+    List<Integer> myIntLinkedList = new MyLinkedList<>();
 
     public void launchCkekingMyHashMap() {
-        //MyHashMap
         checkIsEmptyMyHashMap();
         checkSizeMyHashMap();
         checkPutMyHashMap();
@@ -33,9 +33,21 @@ public class CheckImplementations {
         checkValuesMyHashMap();
         checkClearMyHashMap();
         checkValuesMyHashMap();
-        //MyArrayList
+    }
 
-        //MyLinkedList
+    public void launchCkekingMyLinkedList() {
+        checkISEmptyMyLinkedList();
+        checkAddMyLinkedList();
+        checkGetMyLinkedList();
+        checkSetMyLinkedList();
+        checkAddIndexMyLinkedList();
+        checkRemoveMyLinkedList();
+        checkRemoveObjectMyLinkedList();
+        checkIteratorMyLinkedList();
+        checkClearMyLinkedList();
+    }
+
+    public void launchCkekingMyArrayList() {
         checkIsEmptyMyArrayList();
         checkAddMyArrayList();
         checkGetMyArrayList();
@@ -45,7 +57,94 @@ public class CheckImplementations {
         checkGetStringMyArrayList();
         checkIteratorMyArrayList();
         checkClearMyArrayList();
+    }
 
+    private void checkISEmptyMyLinkedList() {
+        Log.d(TAG, "checkISEmptyMyLinkedList: isEmpty = " + myIntLinkedList.isEmpty());
+    }
+
+    private void checkAddMyLinkedList() {
+        Log.d(TAG, "checkAddMyLinkedList: begin");
+        for (int i = 1; i < 25; i++) {
+            Log.d(TAG, "checkAddMyLinkedList: element = " + i);
+            myIntLinkedList.add(i);
+        }
+        Log.d(TAG, "checkAddMyLinkedList: end");
+    }
+
+    private void checkGetMyLinkedList() {
+        Log.d(TAG, "checkGetMyLinkedList: begin");
+        for (int i = 0; i < myIntLinkedList.size(); i++) {
+            Log.d(TAG, "checkGetMyLinkedList: index = " + i
+                    + ", element = " + myIntLinkedList.get(i).toString());
+        }
+        Log.d(TAG, "checkGetMyLinkedList: end");
+    }
+
+    private void checkSetMyLinkedList() {
+        Log.d(TAG, "checkSetMyLinkedList: begin");
+        myIntLinkedList.set(4, 20);
+        myIntLinkedList.set(23, 33);
+        for (int i = 0; i < myIntLinkedList.size(); i++) {
+            Log.d(TAG, "checkSetMyLinkedList: index = " + i
+                    + ", element = " + myIntLinkedList.get(i).toString());
+        }
+        Log.d(TAG, "checkSetMyLinkedList: end");
+    }
+
+    private void checkAddIndexMyLinkedList() {
+        Log.d(TAG, "checkAddIndexMyLinkedList: begin");
+        myIntLinkedList.add(0, 55);
+        myIntLinkedList.add(0, 66);
+        myIntLinkedList.add(0, 77);
+        myIntLinkedList.add(10, 111);
+        myIntLinkedList.add(10, 222);
+        myIntLinkedList.add(10, 333);
+        for (int i = 0; i < myIntLinkedList.size(); i++) {
+            Log.d(TAG, "checkAddIndexMyLinkedList: index = " + i
+                    + ", element = " + myIntLinkedList.get(i).toString());
+        }
+        Log.d(TAG, "checkAddIndexMyLinkedList: end");
+    }
+
+    private void checkRemoveMyLinkedList() {
+        Log.d(TAG, "checkRemoveMyLinkedList: begin");
+        myIntLinkedList.remove(5);
+        myIntLinkedList.remove(20);
+        for (int i = 0; i < myIntLinkedList.size(); i++) {
+            Log.d(TAG, "checkRemoveMyLinkedList: index = " + i
+                    + ", element = " + myIntLinkedList.get(i).toString());
+        }
+        Log.d(TAG, "checkRemoveMyLinkedList: end");
+    }
+
+    private void checkRemoveObjectMyLinkedList() {
+        Log.d(TAG, "checkRemoveObjectMyLinkedList: begin");
+        myIntLinkedList.remove((Integer) 77);
+        myIntLinkedList.remove((Integer) 333);
+        myIntLinkedList.remove((Integer) 4444);
+        for (int i = 0; i < myIntLinkedList.size(); i++) {
+            Log.d(TAG, "checkRemoveObjectMyLinkedList: index = " + i
+                    + ", element = " + myIntLinkedList.get(i).toString());
+        }
+        Log.d(TAG, "checkRemoveObjectMyLinkedList: end");
+    }
+
+    private void checkIteratorMyLinkedList() {
+        Log.d(TAG, "checkIteratorMyLinkedList: begin");
+        for (Integer element : myIntLinkedList) {
+            Log.d(TAG, "checkIteratorMyLinkedList: element = " + element);
+        }
+        Log.d(TAG, "checkIteratorMyLinkedList: end");
+    }
+
+    private void checkClearMyLinkedList() {
+        Log.d(TAG, "checkClearMyLinkedList: begin");
+        myIntLinkedList.clear();
+        for (Integer element : myIntLinkedList) {
+            Log.d(TAG, "checkClearMyLinkedList: element = " + element);
+        }
+        Log.d(TAG, "checkClearMyLinkedList: end");
     }
 
     private void checkIsEmptyMyHashMap() {
@@ -58,18 +157,30 @@ public class CheckImplementations {
 
     private void checkPutMyHashMap() {
         Log.d(TAG, "checkPutMyHashMap: begin");
-        Log.d(TAG, "checkPutMyHashMap: put(\"key1\", \"One\") = " + myHashMap.put("key1", "One"));
-        Log.d(TAG, "checkPutMyHashMap: put(\"key2\", \"Two\") = " + myHashMap.put("key2", "Two"));
-        Log.d(TAG, "checkPutMyHashMap: put(\"key3\", \"Three\") = " + myHashMap.put("key3", "Three"));
-        Log.d(TAG, "checkPutMyHashMap: put(\"key4\", \"Four\") = " + myHashMap.put("key4", "Four"));
-        Log.d(TAG, "checkPutMyHashMap: put(\"key5\", \"Five\") = " + myHashMap.put("key5", "Five"));
-        Log.d(TAG, "checkPutMyHashMap: put(\"key6\", \"Six\") = " + myHashMap.put("key6", "Six"));
-        Log.d(TAG, "checkPutMyHashMap: put(\"key7\", \"Seven\")= " + myHashMap.put("key7", "Seven"));
-        Log.d(TAG, "checkPutMyHashMap: put(\"key8\", \"Eight\") = " + myHashMap.put("key8", "Eight"));
-        Log.d(TAG, "checkPutMyHashMap: put(\"key9\", \"Nine\") = " + myHashMap.put("key9", "Nine"));
-        Log.d(TAG, "checkPutMyHashMap: put(\"key10\",\"Ten\") = " + myHashMap.put("key10", "Ten"));
-        Log.d(TAG, "checkPutMyHashMap: put(null, \"First Null\") = " + myHashMap.put(null, "First Null"));
-        Log.d(TAG, "checkPutMyHashMap: put(null, \"Second Null\") = " + myHashMap.put(null, "Second Null"));
+        Log.d(TAG, "checkPutMyHashMap: put(\"key1\", \"One\") = "
+                + myHashMap.put("key1", "One"));
+        Log.d(TAG, "checkPutMyHashMap: put(\"key2\", \"Two\") = "
+                + myHashMap.put("key2", "Two"));
+        Log.d(TAG, "checkPutMyHashMap: put(\"key3\", \"Three\") = "
+                + myHashMap.put("key3", "Three"));
+        Log.d(TAG, "checkPutMyHashMap: put(\"key4\", \"Four\") = "
+                + myHashMap.put("key4", "Four"));
+        Log.d(TAG, "checkPutMyHashMap: put(\"key5\", \"Five\") = "
+                + myHashMap.put("key5", "Five"));
+        Log.d(TAG, "checkPutMyHashMap: put(\"key6\", \"Six\") = "
+                + myHashMap.put("key6", "Six"));
+        Log.d(TAG, "checkPutMyHashMap: put(\"key7\", \"Seven\")= "
+                + myHashMap.put("key7", "Seven"));
+        Log.d(TAG, "checkPutMyHashMap: put(\"key8\", \"Eight\") = "
+                + myHashMap.put("key8", "Eight"));
+        Log.d(TAG, "checkPutMyHashMap: put(\"key9\", \"Nine\") = "
+                + myHashMap.put("key9", "Nine"));
+        Log.d(TAG, "checkPutMyHashMap: put(\"key10\",\"Ten\") = "
+                + myHashMap.put("key10", "Ten"));
+        Log.d(TAG, "checkPutMyHashMap: put(null, \"First Null\") = "
+                + myHashMap.put(null, "First Null"));
+        Log.d(TAG, "checkPutMyHashMap: put(null, \"Second Null\") = "
+                + myHashMap.put(null, "Second Null"));
         Log.d(TAG, "checkPutMyHashMap: end");
     }
 
@@ -95,23 +206,35 @@ public class CheckImplementations {
 
     private void checkContainsKeyMyHashMap() {
         Log.d(TAG, "checkContainsKeyMyHashMap: begin");
-        Log.d(TAG, "checkContainsKeyMyHashMap: key = \"key1\" = " + myHashMap.containsKey("key1"));
-        Log.d(TAG, "checkContainsKeyMyHashMap: key = \"key5\" = " + myHashMap.containsKey("key5"));
-        Log.d(TAG, "checkContainsKeyMyHashMap: key = \"key10\" = " + myHashMap.containsKey("key10"));
-        Log.d(TAG, "checkContainsKeyMyHashMap: key = \"key12\" = " + myHashMap.containsKey("key12"));
-        Log.d(TAG, "checkContainsKeyMyHashMap: key = \"key20\" = " + myHashMap.containsKey("key20"));
-        Log.d(TAG, "checkContainsKeyMyHashMap: key = null = " + myHashMap.containsKey(null));
+        Log.d(TAG, "checkContainsKeyMyHashMap: key = \"key1\" = "
+                + myHashMap.containsKey("key1"));
+        Log.d(TAG, "checkContainsKeyMyHashMap: key = \"key5\" = "
+                + myHashMap.containsKey("key5"));
+        Log.d(TAG, "checkContainsKeyMyHashMap: key = \"key10\" = "
+                + myHashMap.containsKey("key10"));
+        Log.d(TAG, "checkContainsKeyMyHashMap: key = \"key12\" = "
+                + myHashMap.containsKey("key12"));
+        Log.d(TAG, "checkContainsKeyMyHashMap: key = \"key20\" = "
+                + myHashMap.containsKey("key20"));
+        Log.d(TAG, "checkContainsKeyMyHashMap: key = null = "
+                + myHashMap.containsKey(null));
         Log.d(TAG, "checkContainsKeyMyHashMap: end");
     }
 
     private void checkContainsValueKeyMyHashMap() {
         Log.d(TAG, "checkContainsValueKeyMyHashMap: begin");
-        Log.d(TAG, "checkContainsValueKeyMyHashMap: value = \"One\" = " + myHashMap.containsValue("One"));
-        Log.d(TAG, "checkContainsValueKeyMyHashMap: value = \"Two\" = " + myHashMap.containsValue("Two"));
-        Log.d(TAG, "checkContainsValueKeyMyHashMap: value = \"Three\" = " + myHashMap.containsValue("Three"));
-        Log.d(TAG, "checkContainsValueKeyMyHashMap: value = \"Forty\" = " + myHashMap.containsValue("Forty"));
-        Log.d(TAG, "checkContainsValueKeyMyHashMap: value = \"Zero\" = " + myHashMap.containsValue("Zero"));
-        Log.d(TAG, "checkContainsValueKeyMyHashMap: value = null = " + myHashMap.containsValue(null));
+        Log.d(TAG, "checkContainsValueKeyMyHashMap: value = \"One\" = "
+                + myHashMap.containsValue("One"));
+        Log.d(TAG, "checkContainsValueKeyMyHashMap: value = \"Two\" = "
+                + myHashMap.containsValue("Two"));
+        Log.d(TAG, "checkContainsValueKeyMyHashMap: value = \"Three\" = "
+                + myHashMap.containsValue("Three"));
+        Log.d(TAG, "checkContainsValueKeyMyHashMap: value = \"Forty\" = "
+                + myHashMap.containsValue("Forty"));
+        Log.d(TAG, "checkContainsValueKeyMyHashMap: value = \"Zero\" = "
+                + myHashMap.containsValue("Zero"));
+        Log.d(TAG, "checkContainsValueKeyMyHashMap: value = null = "
+                + myHashMap.containsValue(null));
         Log.d(TAG, "checkContainsValueKeyMyHashMap: end");
     }
 
@@ -223,6 +346,4 @@ public class CheckImplementations {
         }
         Log.d(TAG, "checkClearMyArrayList: end");
     }
-
-
 }
