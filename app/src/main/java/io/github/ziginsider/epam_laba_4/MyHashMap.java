@@ -172,12 +172,18 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
         return null;
     }
 
-    /*
-    * Below not implemented
-    */
-
     @Override
-    public boolean containsKey(Object o) {
+    public boolean containsKey(Object key) {
+        int hash;
+        int index;
+        if (key == null) hash = 0;
+        else hash = hash(key.hashCode());
+        index = indexFor(hash, table.length);
+        for (Entry<KEY, VALUE> entry = table[index]; entry != null; entry = entry.next) {
+            if (entry.hash == hash && (entry.key == key || key.equals(entry.key))) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -185,6 +191,10 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
     public boolean containsValue(Object o) {
         return false;
     }
+
+    /*
+    * Below not implemented
+    */
 
     @Override
     public VALUE remove(Object o) {
