@@ -8,8 +8,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * Activity that displays LogCat logs on screen.
+ *
+ * <p>LogCat consists a result of checking {@link MyHashMap}, {@link MyArrayList},
+ * {@link MyLinkedList}
+ *
+ * @author Alex Kisel
+ * @since 2018-03-20
+ */
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

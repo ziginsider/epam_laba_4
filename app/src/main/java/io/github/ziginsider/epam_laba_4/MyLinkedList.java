@@ -7,10 +7,27 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-/**
- * Created by zigin on 19.03.2018.
- */
 
+/**
+ * Implementation LinkedList by interface {@link List}
+ *
+ * <p>Implemented methods: {@link MyLinkedList#size()}, {@link MyLinkedList#isEmpty()},
+ * {@link MyLinkedList#add(Object)}, {@link MyLinkedList#add(int, Object)},
+ * {@link MyLinkedList#set(int, Object)}, {@link MyLinkedList#get(int)},
+ * {@link MyLinkedList#remove(Object)}, {@link MyLinkedList#remove(int)},
+ * {@link MyLinkedList#clear()}, {@link MyLinkedList#iterator()}
+ *
+ * <p>Not implemented methods: {@link MyLinkedList#contains(Object)},
+ * {@link MyLinkedList#containsAll(Collection)}, {@link MyLinkedList#toArray()},
+ * {@link MyLinkedList#toArray(Object[])}, {@link MyLinkedList#addAll(Collection)},
+ * {@link MyLinkedList#addAll(int, Collection)}, {@link MyLinkedList#removeAll(Collection)},
+ * {@link MyLinkedList#retainAll(Collection)}, {@link MyLinkedList#indexOf(Object)},
+ * {@link MyLinkedList#lastIndexOf(Object)}, {@link MyLinkedList#listIterator()},
+ * {@link MyLinkedList#subList(int, int)}, {@link MyLinkedList#listIterator(int)}
+ *
+ * @author Alex Kisel
+ * @since 2018-03-20
+ */
 public class MyLinkedList<T> implements List<T> {
     private int size;
     private Node<T> header;
@@ -182,73 +199,109 @@ public class MyLinkedList<T> implements List<T> {
         }
     }
 
-    /*
-    * Below not implemented
-    */
+    /**
+     * Not implemented
+     */
     @Override
     public boolean contains(Object o) {
         return false;
     }
 
+    /**
+     * Not implemented
+     */
     @NonNull
     @Override
     public Object[] toArray() {
         return new Object[0];
     }
 
+    /**
+     * Not implemented
+     */
     @NonNull
     @Override
     public <T1> T1[] toArray(@NonNull T1[] t1s) {
         return null;
     }
 
+    /**
+     * Not implemented
+     */
     @Override
     public boolean containsAll(@NonNull Collection<?> collection) {
         return false;
     }
 
+    /**
+     * Not implemented
+     */
     @Override
     public boolean addAll(@NonNull Collection<? extends T> collection) {
         return false;
     }
 
+    /**
+     * Not implemented
+     */
     @Override
     public boolean addAll(int i, @NonNull Collection<? extends T> collection) {
         return false;
     }
 
+    /**
+     * Not implemented
+     */
     @Override
     public boolean removeAll(@NonNull Collection<?> collection) {
         return false;
     }
 
+    /**
+     * Not implemented
+     */
     @Override
     public boolean retainAll(@NonNull Collection<?> collection) {
         return false;
     }
 
+    /**
+     * Not implemented
+     */
     @Override
     public int indexOf(Object o) {
         return 0;
     }
 
+    /**
+     * Not implemented
+     */
     @Override
     public int lastIndexOf(Object o) {
         return 0;
     }
 
+    /**
+     * Not implemented
+     */
     @NonNull
     @Override
     public ListIterator<T> listIterator() {
         return null;
     }
 
+    /**
+     * Not implemented
+     */
     @NonNull
     @Override
     public ListIterator<T> listIterator(int i) {
         return null;
     }
 
+    /**
+     * Not implemented
+     */
     @NonNull
     @Override
     public List<T> subList(int i, int i1) {

@@ -5,18 +5,26 @@ import android.util.Log;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by zigin on 20.03.2018.
- */
 
+/**
+ * Checking implemented classes {@link MyHashMap}, {@link MyArrayList}, {@link MyLinkedList}
+ *
+ * <p>The result of check is displayed in LogCat<p/>
+ *
+ * @author Alex Kisel
+ * @since 2018-03-20
+ */
 public class CheckImplementations {
     private static final String TAG = CheckImplementations.class.getSimpleName();
 
-    Map<String, String> myHashMap = new MyHashMap<>();
-    List<Integer> myIntArray = new MyArrayList<>();
-    List<String> myStringArray = new MyArrayList<>();
-    List<Integer> myIntLinkedList = new MyLinkedList<>();
+    private Map<String, String> myHashMap = new MyHashMap<>();
+    private List<Integer> myIntArray = new MyArrayList<>();
+    private List<String> myStringArray = new MyArrayList<>();
+    private List<Integer> myIntLinkedList = new MyLinkedList<>();
 
+    /**
+     * Checking {@link MyHashMap}
+     */
     public void launchCkekingMyHashMap() {
         checkIsEmptyMyHashMap();
         checkSizeMyHashMap();
@@ -35,6 +43,9 @@ public class CheckImplementations {
         checkValuesMyHashMap();
     }
 
+    /**
+     * Checking {@link MyLinkedList}
+     */
     public void launchCkekingMyLinkedList() {
         checkISEmptyMyLinkedList();
         checkAddMyLinkedList();
@@ -47,6 +58,9 @@ public class CheckImplementations {
         checkClearMyLinkedList();
     }
 
+    /**
+     * Checking {@link MyArrayList}
+     */
     public void launchCkekingMyArrayList() {
         checkIsEmptyMyArrayList();
         checkAddMyArrayList();

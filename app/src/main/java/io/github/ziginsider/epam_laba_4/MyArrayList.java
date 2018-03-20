@@ -8,9 +8,25 @@ import java.util.List;
 import java.util.ListIterator;
 
 /**
- * Created by zigin on 18.03.2018.
+ * Implementation ArrayList by interface {@link List}
+ *
+ * <p>Implemented methods: {@link MyArrayList#size()}, {@link MyArrayList#isEmpty()},
+ * {@link MyArrayList#add(Object)}, {@link MyArrayList#add(int, Object)},
+ * {@link MyArrayList#get(int)}, {@link MyArrayList#set(int, Object)},
+ * {@link MyArrayList#remove(int)}, {@link MyArrayList#remove(Object)},
+ * {@link MyArrayList#clear()}, {@link MyArrayList#iterator()}
+ *
+ * <p>Not implemented methods: {@link MyArrayList#containsAll(Collection)},
+ * {@link MyArrayList#add(int, Object)}, {@link MyArrayList#add(Object)},
+ * {@link MyArrayList#retainAll(Collection)}, {@link MyArrayList#removeAll(Collection)},
+ * {@link MyArrayList#indexOf(Object)}, {@link MyArrayList#lastIndexOf(Object)},
+ * {@link MyArrayList#listIterator(int)}, {@link MyArrayList#listIterator()},
+ * {@link MyArrayList#subList(int, int)}, {@link MyArrayList#contains(Object)},
+ * {@link MyArrayList#toArray(Object[])}, {@link MyArrayList#toArray()}
+ *
+ * @author Alex Kisel
+ * @since 2018-03-20
  */
-
 public class MyArrayList<T> implements List<T> {
     private static final int START_CAPACITY = 10;
 
@@ -151,70 +167,109 @@ public class MyArrayList<T> implements List<T> {
     * Below not implemented
     */
 
+    /**
+     * Not implemented
+     */
     @Override
     public boolean containsAll(@NonNull Collection<?> collection) {
         return false;
     }
 
+    /**
+     * Not implemented
+     */
     @Override
     public boolean addAll(@NonNull Collection<? extends T> collection) {
         return false;
     }
 
+    /**
+     * Not implemented
+     */
     @Override
     public boolean addAll(int i, @NonNull Collection<? extends T> collection) {
         return false;
     }
 
+    /**
+     * Not implemented
+     */
     @Override
     public boolean removeAll(@NonNull Collection<?> collection) {
         return false;
     }
 
+    /**
+     * Not implemented
+     */
     @Override
     public boolean retainAll(@NonNull Collection<?> collection) {
         return false;
     }
 
+    /**
+     * Not implemented
+     */
     @Override
     public int indexOf(Object o) {
         return 0;
     }
 
+    /**
+     * Not implemented
+     */
     @Override
     public int lastIndexOf(Object o) {
         return 0;
     }
 
+    /**
+     * Not implemented
+     */
     @NonNull
     @Override
     public ListIterator<T> listIterator() {
         return null;
     }
 
+    /**
+     * Not implemented
+     */
     @NonNull
     @Override
     public ListIterator<T> listIterator(int i) {
         return null;
     }
 
+    /**
+     * Not implemented
+     */
     @NonNull
     @Override
     public List<T> subList(int i, int i1) {
         return null;
     }
 
+    /**
+     * Not implemented
+     */
     @Override
     public boolean contains(Object o) {
         return false;
     }
 
+    /**
+     * Not implemented
+     */
     @NonNull
     @Override
     public Object[] toArray() {
         return new Object[0];
     }
 
+    /**
+     * Not implemented
+     */
     @NonNull
     @Override
     public <T1> T1[] toArray(@NonNull T1[] t1s) {
