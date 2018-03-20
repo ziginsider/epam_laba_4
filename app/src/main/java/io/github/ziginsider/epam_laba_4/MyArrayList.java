@@ -9,13 +9,13 @@ import java.util.ListIterator;
 
 /**
  * Implementation ArrayList by interface {@link List}
- *
+ * <p>
  * <p>Implemented methods: {@link MyArrayList#size()}, {@link MyArrayList#isEmpty()},
  * {@link MyArrayList#add(Object)}, {@link MyArrayList#add(int, Object)},
  * {@link MyArrayList#get(int)}, {@link MyArrayList#set(int, Object)},
  * {@link MyArrayList#remove(int)}, {@link MyArrayList#remove(Object)},
  * {@link MyArrayList#clear()}, {@link MyArrayList#iterator()}
- *
+ * <p>
  * <p>Not implemented methods: {@link MyArrayList#containsAll(Collection)},
  * {@link MyArrayList#add(int, Object)}, {@link MyArrayList#add(Object)},
  * {@link MyArrayList#retainAll(Collection)}, {@link MyArrayList#removeAll(Collection)},
@@ -33,10 +33,20 @@ public class MyArrayList<T> implements List<T> {
     private T[] elements;
     private int size;
 
+    /**
+     * Constructs an empty list with an initial capacity of ten.
+     */
     MyArrayList() {
         this(START_CAPACITY);
     }
 
+    /**
+     * Constructs an empty list with the specified initial capacity.
+     *
+     * @param capacity the initial capacity of the list
+     * @throws IllegalArgumentException if the specified initial capacity
+     *                                  is negative
+     */
     MyArrayList(int capacity) {
         if (capacity < 0)
             throw new IllegalArgumentException("Illegal Capacity: " + capacity);
@@ -44,6 +54,12 @@ public class MyArrayList<T> implements List<T> {
         size = 0;
     }
 
+    /**
+     * Appends the specified element to the end of this list.
+     *
+     * @param element element to be appended to this list
+     * @return <tt>true</tt>
+     */
     @Override
     public boolean add(T element) {
         ensureCapacity(size + 1);
@@ -51,6 +67,14 @@ public class MyArrayList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * Inserts the specified element at the specified position in this
+     * list. Shifts the element currently at that position (if any) and
+     * any subsequent elements to the right (adds one to their indices).
+     *
+     * @param index   index at which the specified element is to be inserted
+     * @param element element to be inserted
+     */
     @Override
     public void add(int index, T element) {
         rangeCheckForAdd(index);
@@ -70,11 +94,23 @@ public class MyArrayList<T> implements List<T> {
         }
     }
 
+    /**
+     * Returns the number of elements in this list.
+     *
+     * @return the number of elements in this list
+     */
     @Override
     public int size() {
         return size;
     }
 
+    /**
+     * Returns the element at the specified position in this list.
+     *
+     * @param index index of the element to return
+     * @return the element at the specified position in this list
+     * @throws IndexOutOfBoundsException {@inheritDoc}
+     */
     @Override
     public T get(int index) {
         rangeCheck(index);
@@ -91,6 +127,15 @@ public class MyArrayList<T> implements List<T> {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
     }
 
+    /**
+     * Replaces the element at the specified position in this list with
+     * the specified element.
+     *
+     * @param index   index of the element to replace
+     * @param element element to be stored at the specified position
+     * @return the element previously at the specified position
+     * @throws IndexOutOfBoundsException {@inheritDoc}
+     */
     @Override
     public T set(int index, T element) {
         rangeCheck(index);
@@ -99,6 +144,15 @@ public class MyArrayList<T> implements List<T> {
         return oldElement;
     }
 
+    /**
+     * Removes the element at the specified position in this list.
+     * Shifts any subsequent elements to the left (subtracts one from their
+     * indices).
+     *
+     * @param index the index of the element to be removed
+     * @return the element that was removed from the list
+     * @throws IndexOutOfBoundsException {@inheritDoc}
+     */
     @Override
     public T remove(int index) {
         rangeCheck(index);
@@ -110,6 +164,14 @@ public class MyArrayList<T> implements List<T> {
         return oldElement;
     }
 
+    /**
+     * Removes the first occurrence of the specified element from this list,
+     * if it is present.  If the list does not contain the element, it is
+     * unchanged.
+     *
+     * @param object element to be removed from this list, if present
+     * @return <tt>true</tt> if this list contained the specified element
+     */
     @Override
     public boolean remove(Object object) {
         if (object == null) {
@@ -125,6 +187,10 @@ public class MyArrayList<T> implements List<T> {
         return false;
     }
 
+    /**
+     * Removes all of the elements from this list.  The list will
+     * be empty after this call returns.
+     */
     @Override
     public void clear() {
         for (int i = 0; i < size; i++) {
@@ -133,11 +199,22 @@ public class MyArrayList<T> implements List<T> {
         size = 0;
     }
 
+    /**
+     * Returns <tt>true</tt> if this list contains no elements.
+     *
+     * @return <tt>true</tt> if this list contains no elements
+     */
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    /**
+     * Returns an iterator of the elements in this list (in proper
+     * sequence
+     *
+     * @return iterator
+     */
     @NonNull
     @Override
     public Iterator<T> iterator() {
@@ -162,10 +239,6 @@ public class MyArrayList<T> implements List<T> {
             return elements[index++];
         }
     }
-
-    /*
-    * Below not implemented
-    */
 
     /**
      * Not implemented
