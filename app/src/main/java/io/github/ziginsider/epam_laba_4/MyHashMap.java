@@ -110,9 +110,9 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
         addEntry(hash, key, value, index);
         return null;
     }
-    
+
     private VALUE putForNullKey(VALUE value) {
-        for (Entry<KEY,VALUE> entry = table[0]; entry != null; entry = entry.next) {
+        for (Entry<KEY, VALUE> entry = table[0]; entry != null; entry = entry.next) {
             if (entry.key == null) {
                 VALUE oldValue = entry.value;
                 entry.value = value;
@@ -124,14 +124,33 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
     }
 
     private void addEntry(int hash, KEY key, VALUE value, int index) {
-        Entry<KEY,VALUE> topEntry = table[index];
+        Entry<KEY, VALUE> topEntry = table[index];
         table[index] = new Entry<>(hash, key, value, topEntry);
         if (size++ >= threshold) {
             resize(2 * table.length);
         }
     }
 
-
+    private void resize(int newCapacity) {
+        Entry[] oldTable = table;
+        Entry[] newTable = new Entry[newCapacity];
+        //transfer
+        for (int i = 0; i < oldTable.length; i++) {
+            Entry<KEY, VALUE> entry = oldTable[i];
+            if (entry != null) {
+                oldTable[i] = null;
+                do {
+                    Entry<KEY, VALUE> nextEntry = entry.next;
+                    int index = indexFor(entry.hash, newCapacity);
+                    entry.next = newTable[index];
+                    newTable[index] = entry;
+                    entry = nextEntry;
+                } while (entry != null);
+            }
+        }
+        table = newTable;
+        threshold = (int) (newCapacity * loadFactor);
+    }
 
     /*
     * Below not implemented
