@@ -210,7 +210,7 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
         if (key == null) hash = 0;
         else hash = hash(key.hashCode());
         int index = indexFor(hash, table.length);
-        for (Entry<KEY, VALUE> prev = table[index], entry = table[index];
+        for (Entry<KEY, VALUE> prev = table[index], entry = prev;
              entry != null;
              prev = entry, entry = entry.next) {
             if (entry.hash == hash && (entry.key == key || key.equals(entry.key))) {

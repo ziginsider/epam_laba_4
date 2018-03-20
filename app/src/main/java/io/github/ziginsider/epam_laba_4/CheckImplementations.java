@@ -13,8 +13,11 @@ public class CheckImplementations {
     private static final String TAG = CheckImplementations.class.getSimpleName();
 
     Map<String, String> myHashMap = new MyHashMap<>();
+    List<Integer> myIntArray = new MyArrayList<>();
+    List<String> myStringArray = new MyArrayList<>();
 
     public void launchCkekingMyHashMap() {
+        //MyHashMap
         checkIsEmptyMyHashMap();
         checkSizeMyHashMap();
         checkPutMyHashMap();
@@ -30,6 +33,19 @@ public class CheckImplementations {
         checkValuesMyHashMap();
         checkClearMyHashMap();
         checkValuesMyHashMap();
+        //MyArrayList
+
+        //MyLinkedList
+        checkIsEmptyMyArrayList();
+        checkAddMyArrayList();
+        checkGetMyArrayList();
+        checkSetMyArrayList();
+        checkAddIndexMyArrayList();
+        checkAddStringMyArrayList();
+        checkGetStringMyArrayList();
+        checkIteratorMyArrayList();
+        checkClearMyArrayList();
+
     }
 
     private void checkIsEmptyMyHashMap() {
@@ -101,9 +117,9 @@ public class CheckImplementations {
 
     private void checkRemoveMyHashMap() {
         Log.d(TAG, "checkRemoveMyHashMap: begin");
-        Log.d(TAG, "checkRemoveMyHashMap: key = \"One\" = " + myHashMap.remove(""));
-        Log.d(TAG, "checkRemoveMyHashMap: key = \"Two\" = " + myHashMap.remove("Two"));
-        Log.d(TAG, "checkRemoveMyHashMap: key = \"Five\" = " + myHashMap.remove("Five"));
+        Log.d(TAG, "checkRemoveMyHashMap: key = \"key1\" = " + myHashMap.remove("key1"));
+        Log.d(TAG, "checkRemoveMyHashMap: key = \"key2\" = " + myHashMap.remove("key2"));
+        Log.d(TAG, "checkRemoveMyHashMap: key = \"key5\" = " + myHashMap.remove("key5"));
         Log.d(TAG, "checkRemoveMyHashMap: key = null = " + myHashMap.remove(null));
         Log.d(TAG, "checkRemoveMyHashMap: end");
     }
@@ -121,6 +137,91 @@ public class CheckImplementations {
         Log.d(TAG, "checkClearMyHashMap: begin");
         myHashMap.clear();
         Log.d(TAG, "checkClearMyHashMap: end");
+    }
+
+    private void checkIsEmptyMyArrayList() {
+        Log.d(TAG, "checkIsEmptyMyArrayList: " + myIntArray.isEmpty());
+    }
+
+    private void checkAddMyArrayList() {
+        Log.d(TAG, "checkAddMyArrayList: begin");
+        for (int i = 1; i < 25; i++) {
+            Log.d(TAG, "checkAddMyArrayList: add element = " + i);
+            myIntArray.add(i);
+        }
+        Log.d(TAG, "checkAddMyArrayList: end");
+    }
+
+    private void checkGetMyArrayList() {
+        Log.d(TAG, "checkGetMyArrayList: begin");
+        for (int i = 0; i < myIntArray.size(); i++) {
+            Log.d(TAG, "checkGetMyArrayList: index = " + i
+                    + ", element = " + myIntArray.get(i).toString());
+        }
+        Log.d(TAG, "checkGetMyArrayList: end");
+    }
+
+    private void checkSetMyArrayList() {
+        Log.d(TAG, "checkSetMyArrayList: begin");
+        myIntArray.set(4, 20);
+        myIntArray.set(23, 33);
+        for (int i = 0; i < myIntArray.size(); i++) {
+            Log.d(TAG, "checkSetMyArrayList: index = " + i
+                    + ", element = " + myIntArray.get(i).toString());
+        }
+        Log.d(TAG, "checkSetMyArrayList: end");
+    }
+
+    private void checkAddIndexMyArrayList() {
+        Log.d(TAG, "checkAddIndexMyArrayList: begin");
+        myIntArray.add(0, 55);
+        myIntArray.add(0, 66);
+        myIntArray.add(0, 77);
+        myIntArray.add(10, 111);
+        myIntArray.add(10, 222);
+        myIntArray.add(10, 333);
+        for (int i = 0; i < myIntArray.size(); i++) {
+            Log.d(TAG, "checkAddIndexMyArrayList: index = " + i
+                    + ", element = " + myIntArray.get(i).toString());
+        }
+        Log.d(TAG, "checkAddIndexMyArrayList: end");
+    }
+
+    private void checkAddStringMyArrayList() {
+        Log.d(TAG, "checkAddStringMyArrayList: begin");
+        String[] strings = new String[]{"One", "Two", "Three", "Four", "Five", "Six", "Seven",
+                "Eight", "Nine", "Ten", "Eleven", "Twelve"};
+        for (int i = 0; i < 12; i++) {
+            Log.d(TAG, "checkAddStringMyArrayList: add element = " + strings[i]);
+            myStringArray.add(strings[i]);
+        }
+        Log.d(TAG, "checkAddStringMyArrayList: end");
+    }
+
+    private void checkGetStringMyArrayList() {
+        Log.d(TAG, "checkGetStringMyArrayList: begin");
+        for (int i = 0; i < myStringArray.size(); i++) {
+            Log.d(TAG, "checkGetStringMyArrayList: index = " + i
+                    + ", element = " + myStringArray.get(i));
+        }
+        Log.d(TAG, "checkGetStringMyArrayList: end");
+    }
+
+    private void checkIteratorMyArrayList() {
+        Log.d(TAG, "checkIteratorMyArrayList: begin");
+        for (String element : myStringArray) {
+            Log.d(TAG, "checkIteratorMyArrayList: element = " + element);
+        }
+        Log.d(TAG, "checkIteratorMyArrayList: end");
+    }
+
+    private void checkClearMyArrayList() {
+        Log.d(TAG, "checkClearMyArrayList: begin");
+        myStringArray.clear();
+        for (String element : myStringArray) {
+            Log.d(TAG, "checkClearMyArrayList: element = " + element);
+        }
+        Log.d(TAG, "checkClearMyArrayList: end");
     }
 
 
