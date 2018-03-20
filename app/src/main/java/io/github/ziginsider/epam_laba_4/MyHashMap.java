@@ -165,6 +165,13 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
         return null;
     }
 
+    private VALUE getForNullKey() {
+        for (Entry<KEY, VALUE> entry = table[0]; entry != null; entry = entry.next) {
+            if (entry.key == null) return entry.value;
+        }
+        return null;
+    }
+
     /*
     * Below not implemented
     */
