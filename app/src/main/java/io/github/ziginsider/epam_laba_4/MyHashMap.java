@@ -188,7 +188,18 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
     }
 
     @Override
-    public boolean containsValue(Object o) {
+    public boolean containsValue(Object value) {
+        if (value == null) return containsNullValue();
+        for (int i = 0; i < table.length; i++)
+            for (Entry entry = table[i]; entry != null; entry = entry.next)
+                if (value.equals(entry.value)) return true;
+        return false;
+    }
+
+    private boolean containsNullValue() {
+        for (int i = 0; i < table.length; i++)
+            for (Entry entry = table[i]; entry != null; entry = entry.next)
+                if (entry.value == null) return true;
         return false;
     }
 
