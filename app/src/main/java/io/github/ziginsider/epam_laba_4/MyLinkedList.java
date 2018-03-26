@@ -104,10 +104,13 @@ public class MyLinkedList<T> implements List<T> {
         } else {
             Node<T> foundNode = findNode(index);
             Node<T> newNode = new Node<>(element, foundNode, foundNode.prevNode);
-            foundNode.prevNode.nextNode = newNode;
-            foundNode.prevNode = newNode;
+//            foundNode.prevNode.nextNode = newNode;
+//            foundNode.prevNode = newNode;
+            newNode.prevNode.nextNode = newNode;
+            newNode.nextNode.prevNode =newNode;
             size++;
         }
+
     }
 
     /**
