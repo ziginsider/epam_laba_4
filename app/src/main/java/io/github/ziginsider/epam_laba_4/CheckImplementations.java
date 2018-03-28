@@ -191,6 +191,8 @@ public class CheckImplementations {
                 + myHashMap.put("key9", "Nine"));
         Log.d(TAG, "checkPutMyHashMap: put(\"key10\",\"Ten\") = "
                 + myHashMap.put("key10", "Ten"));
+        Log.d(TAG, "checkPutMyHashMap: put(\"key10\",\"Ten\") = "
+                + myHashMap.put("key10", "TenTenTen"));
         Log.d(TAG, "checkPutMyHashMap: put(null, \"First Null\") = "
                 + myHashMap.put(null, "First Null"));
         Log.d(TAG, "checkPutMyHashMap: put(null, \"Second Null\") = "
