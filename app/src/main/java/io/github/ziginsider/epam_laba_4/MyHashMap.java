@@ -160,17 +160,15 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
         if (key == null) return putForNullKey(value);
         int hash = hash(key.hashCode());
         int index = indexFor(hash, table.length);
-        Expression<KEY, VALUE> block = (Entry<KEY, VALUE> entry) -> {
+        Expression<KEY, VALUE> block = entry -> {
             VALUE oldValue = entry.value;
             entry.value = value;
             return oldValue;
         };
         VALUE oldValue = findEntryAndDo(key, hash, index, block);
         if (oldValue != null) return oldValue;
-        else {
-            addEntry(hash, key, value, index);
-            return null;
-        }
+        addEntry(hash, key, value, index);
+        return null;
     }
 
     private VALUE findEntryAndDo(KEY key, int hash, int index, Expression<KEY, VALUE> block) {
@@ -236,12 +234,7 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
         if (key == null) return getForNullKey();
         int hash = hash(key.hashCode());
         int index = indexFor(hash, table.length);
-        for (Entry<KEY, VALUE> entry = table[index]; entry != null; entry = entry.next) {
-            if (entry.hash == hash && (entry.key == key || key.equals(entry.key))) {
-                return entry.value;
-            }
-        }
-        return null;
+        return findEntryAndDo((KEY) key, hash, index, entry -> entry.value);
     }
 
     private VALUE getForNullKey() {
@@ -265,11 +258,7 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
         if (key == null) hash = 0;
         else hash = hash(key.hashCode());
         int index = indexFor(hash, table.length);
-        for (Entry<KEY, VALUE> entry = table[index]; entry != null; entry = entry.next) {
-            if (entry.hash == hash && (entry.key == key || key.equals(entry.key))) {
-                return true;
-            }
-        }
+        if (findEntryAndDo((KEY) key, hash, index, (entry) -> entry.value) != null) return true;
         return false;
     }
 
