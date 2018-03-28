@@ -160,14 +160,25 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
         if (key == null) return putForNullKey(value);
         int hash = hash(key.hashCode());
         int index = indexFor(hash, table.length);
+        Expression<KEY, VALUE> block = (Entry<KEY, VALUE> entry) -> {
+            VALUE oldValue = entry.value;
+            entry.value = value;
+            return oldValue;
+        };
+        VALUE oldValue = findEntryAndDo(key, hash, index, block);
+        if (oldValue != null) return oldValue;
+        else {
+            addEntry(hash, key, value, index);
+            return null;
+        }
+    }
+
+    private VALUE findEntryAndDo(KEY key, int hash, int index, Expression<KEY, VALUE> block) {
         for (Entry<KEY, VALUE> entry = table[index]; entry != null; entry = entry.next) {
             if (entry.hash == hash && (entry.key == key || key.equals(entry.key))) {
-                VALUE oldValue = entry.value;
-                entry.value = value;
-                return oldValue;
+                return block.doWithEntry(entry);
             }
         }
-        addEntry(hash, key, value, index);
         return null;
     }
 
@@ -363,4 +374,8 @@ public class MyHashMap<KEY, VALUE> implements Map<KEY, VALUE> {
     public Set<Map.Entry<KEY, VALUE>> entrySet() {
         return null;
     }
+}
+
+interface Expression<KEY, VALUE> {
+    VALUE doWithEntry(MyHashMap.Entry<KEY, VALUE> entry);
 }
